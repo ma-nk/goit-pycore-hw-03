@@ -16,14 +16,14 @@ def get_upcoming_birthdays(users):
     for user in users:
         user_birthday = datetime.strptime(user["birthday"], "%Y.%m.%d").date()
         user_birthday_this_year = datetime(today.year, user_birthday.month, user_birthday.day).date()
-        if 7 > (user_birthday_this_year - today).days > 0:
+        if 7 >= (user_birthday_this_year - today).days > 0:
             congratulation_date = move_to_next_monday(user_birthday_this_year)
             ret.append({"name" : user["name"], "congratulation_date": congratulation_date.strftime("%Y.%m.%d")})
     return ret
 
 users = [
-    {"name": "John Doe", "birthday": "1985.10.06"},
-    {"name": "Jane Smith", "birthday": "1990.10.05"}
+    {"name": "John Doe", "birthday": "1985.10.01"},
+    {"name": "Jane Smith", "birthday": "1990.10.12"}
 ]
 
 upcoming_birthdays = get_upcoming_birthdays(users)
